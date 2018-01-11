@@ -1,6 +1,6 @@
 public class Biblioteca {
 
-    public String start() {
-        return "Welcome";
+    public void start() {
+        System.out.print("Welcome");
     }
 }

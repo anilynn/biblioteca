@@ -1,5 +1,9 @@
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 import static org.junit.Assert.assertEquals;
 
 public class BibliotecaTest {
@@ -7,12 +11,18 @@ public class BibliotecaTest {
     @Test
     public void shouldReturnWelcomeWhenBibliotecaStarts() {
         // Arrange our objects
+        OutputStream os = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(os);
+        System.setOut(ps);
+
+
         Biblioteca biblioteca = new Biblioteca();
 
         // Action we are testing
-        String result = biblioteca.start();
-
+        biblioteca.start();
+        
         // Assert that the action caused the expected result
-        assertEquals(result, "Welcome");
+        assertEquals("Welcome",os.toString());
     }
 }
+
