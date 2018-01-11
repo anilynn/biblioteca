@@ -10,10 +10,6 @@ public class Biblioteca {
         printBooks();
     }
 
-    public ArrayList<String> getBooks() {
-        return allBooks;
-    }
-
     public Biblioteca() {
         allBooks = new ArrayList<String>();
     }
@@ -28,12 +24,11 @@ public class Biblioteca {
             return;
         }
 
-        String books = "";
+        StringBuffer books = new StringBuffer();
 
         for (String book: allBooks) {
-            books += book + " ";
+            books.append(book + " ");
         }
-
         System.out.println(books.substring(0, books.length()-1));
 
     }
