@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -9,24 +10,24 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class BibliotecaTest {
+    public OutputStream os;
 
-
-    public void printSetup(OutputStream os) {
+    @Before
+    public void printSetup() {
         // Arrange our objects
+        os = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(os);
         System.setOut(ps);
     }
 
     @Test
     public void shouldPrintWelcomeWhenNoBooks() {
-        OutputStream os = new ByteArrayOutputStream();
-        printSetup(os);
         Biblioteca biblioteca = new Biblioteca();
 
         // Action we are testing
         biblioteca.start();
 
-        String expected = "Welcome\n";
+        String expected = "Welcome!\n";
 
         // Assert that the action caused the expected result
         assertEquals(expected,os.toString());
@@ -35,8 +36,6 @@ public class BibliotecaTest {
 
      @Test
     public void shouldPrintWelcomeAndOneBook() {
-         OutputStream os = new ByteArrayOutputStream();
-         printSetup(os);
          ArrayList<String> allBooks = new ArrayList<>();
 
          allBooks.add("The Hobbit");
@@ -46,12 +45,28 @@ public class BibliotecaTest {
          // Action we are testing
          biblioteca.start();
 
-         String expected = "Welcome\nThe Hobbit\n";
+         String expected = "Welcome!\nThe Hobbit\n";
 
          // Assert that the action caused the expected result
          assertEquals(expected,os.toString());
      }
 
+     @Test
+    public void shouldPrintListOfBooks() {
+         ArrayList<String> allBooks = new ArrayList<>();
+
+         allBooks.add("The Hobbit");
+         allBooks.add("Two Towers");
+
+         Biblioteca biblioteca = new Biblioteca(allBooks);
+
+         biblioteca.start();
+         String expected = "Welcome!\nThe Hobbit, Two Towers\n";
+
+         assertEquals(expected, os.toString());
+     }
+
+     
 
 
     }
