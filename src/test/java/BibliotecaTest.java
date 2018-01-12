@@ -35,16 +35,16 @@ public class BibliotecaTest {
 
      @Test
     public void shouldPrintWelcomeAndOneBook() {
-         ArrayList<String> allBooks = new ArrayList<>();
+         ArrayList<Book> allBooks = new ArrayList<>();
 
-         allBooks.add("The Hobbit");
+         allBooks.add(new Book("The Hobbit", "J.R.R. Tolkien", "1937"));
 
          Biblioteca biblioteca = new Biblioteca(allBooks);
 
          // Action we are testing
          biblioteca.start();
 
-         String expected = "Welcome!\nThe Hobbit\n";
+         String expected = "Welcome!\nThe Hobbit | J.R.R. Tolkien | 1937\n";
 
          // Assert that the action caused the expected result
          assertEquals(expected,os.toString());
@@ -52,15 +52,15 @@ public class BibliotecaTest {
 
      @Test
     public void shouldPrintListOfBooks() {
-         ArrayList<String> allBooks = new ArrayList<>();
+         ArrayList<Book> allBooks = new ArrayList<>();
 
-         allBooks.add("The Hobbit");
-         allBooks.add("Two Towers");
+         allBooks.add(new Book("The Hobbit", "J.R.R. Tolkien", "1937"));
+         allBooks.add(new Book("The Two Towers", "J.R.R. Tolkien", "1947"));
 
          Biblioteca biblioteca = new Biblioteca(allBooks);
 
          biblioteca.start();
-         String expected = "Welcome!\nThe Hobbit, Two Towers\n";
+         String expected = "Welcome!\nThe Hobbit | J.R.R. Tolkien | 1937\nThe Two Towers | J.R.R. Tolkien | 1947\n";
 
          assertEquals(expected, os.toString());
      }

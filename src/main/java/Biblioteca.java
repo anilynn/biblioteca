@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Biblioteca {
 
-    private ArrayList<String> allBooks;
+    private ArrayList<Book> allBooks;
 
     public void start() {
         System.out.println("Welcome!");
@@ -10,10 +10,10 @@ public class Biblioteca {
     }
 
     public Biblioteca() {
-        allBooks = new ArrayList<String>();
+        allBooks = new ArrayList<>();
     }
 
-    public Biblioteca(ArrayList<String> allBooks) {
+    public Biblioteca(ArrayList<Book> allBooks) {
         this.allBooks = allBooks;
     }
 
@@ -25,18 +25,18 @@ public class Biblioteca {
 
         StringBuffer books = new StringBuffer();
 
-        for (String book: allBooks) {
-            books.append(book + ", ");
+        for (Book book: allBooks) {
+            books.append(book.toString() + "\n");
         }
-        System.out.println(books.substring(0, books.length() - 2));
+        System.out.println(books.substring(0, books.length() - 1));
 
     }
 
     public static void main(String[] args) {
-        ArrayList<String> bookList = new ArrayList<>();
-        bookList.add("The Chamber of Secrets");
-        bookList.add("The Goblet of Fire");
-        bookList.add("The Prisoner of Azkaban");
+        ArrayList<Book> bookList = new ArrayList<>();
+        bookList.add(new Book("The Chamber of Secrets", "JK Rowling", "1997"));
+        bookList.add(new Book("The Goblet of Fire", "JK Rowling", "2000"));
+        bookList.add(new Book("The Prisoner of Azkaban", "JK Rowling", "1999"));
 
         Biblioteca b = new Biblioteca(bookList);
         b.start();
