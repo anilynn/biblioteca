@@ -5,7 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -66,8 +65,14 @@ public class BibliotecaTest {
          assertEquals(expected, os.toString());
      }
 
-     
+     @Test
+    public void shouldPrintBookTitleAuthorAndYearPublished() {
+        Book b = new Book("The Hobbit", "J.R.R. Tolkien", "1937");
+        String expected = "The Hobbit | J.R.R. Tolkien | 1937\n";
 
+        b.printDetails();
+        assertEquals(expected, os.toString());
+     }
 
     }
 
